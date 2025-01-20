@@ -28,7 +28,7 @@ bool isSeparator(char ch) {
             ch == '*' || ch == '+' || ch == '/' || ch == '-' || ch == '=' ||
             ch == '.' || ch == ',' || ch == ';' || ch == ':' ||
             ch == '\n' || ch == '\t' ||
-            ch == '(' || ch == ')' || ch == '[' || ch == ']' || ch == '{' || ch == '}');
+            ch == '(' || ch == ')' || ch == '[' || ch == ']' || ch == '{' || ch == '}' || ch == '<' || ch == '>');
 }
 
 std::string toUpperCase(const std::string &str) {
@@ -248,7 +248,7 @@ Token Scanner::FindToken(std::ifstream &file) {
                         } else {
                             // Число(Real если . или E)
                             if (line.find('.') != std::string::npos || line.find('E') != std::string::npos) {
-                                return {"REAL", lineCount, columnCount, line};
+                                return {"DOUBLE", lineCount, columnCount, line};
                             } else {
                                 if (line.size() <= 16) {
                                     return {"INTEGER", lineCount, columnCount, line};
@@ -312,7 +312,7 @@ Token Scanner::FindToken(std::ifstream &file) {
             } else {
                 // Число(Real если . или E)
                 if (line.find('.') != std::string::npos || line.find('E') != std::string::npos) {
-                    return {"REAL", lineCount, columnCount, line};
+                    return {"DOUBLE", lineCount, columnCount, line};
                 } else {
                     if (line.size() <= 16) {
                         return {"INTEGER", lineCount, columnCount, line};
